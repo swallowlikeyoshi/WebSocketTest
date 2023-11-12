@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>WebSocketTest</title>
+        <meta charset="utf-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+        <script src="/static/js/WebSocket.js"></script>
+    </head>
+    <body>
+        <h1>채팅방</h1>
+        <textarea id="chatBox" cols="80" row="20"></textarea>
+        <br>
+        <br>
+        {{name}}
+        <input id="userInput" size="80" placeholder="메세지 보내기">
+        <br>
+        <br>
+        <a href="#" onclick="leave_room();">나가기</a>
+    </body>
+</html>

@@ -1,17 +1,21 @@
 $(document).ready(function(){
-    var socket = io.connect('http://localhost:3000');
+
+    var socket = io.connect('http://127.0.0.1');
+
     socket.on('connect', function(){
-        var connect_string = 'new_connect';
-        socket.send(connect_string);
+        var onConnect = "freshman"
+        socket.send(onConnect);
     });
-    
-    socket.on('hello', function(msg){
-        $('#messages').append('<li>' + '>>Hello :' + msg + '</li>');
-        console.log('Received Hello msg');
+
+    const userName = prompt("사용자 이름 입력");
+    console.log("username", userName);
+
+    socket.on('login', userName, (responseFromServer)=>{
+        console.log("Res?: ", responseFromServer);
     });
 
     socket.on('message', function(msg){
-        if (msg.type === 'normal') {
+        if (msg.type === 'text') {
             $('#messages').append('>> ' + msg.message + '<br>');
         }
         else {
@@ -21,8 +25,9 @@ $(document).ready(function(){
         console.log('Received "' + msg.type + '".')
     });
 
-    $('#sendbutton').on('click', function(){
-        socket.send($('#myMessage').val());
-        $('#myMessage').val('');
+    $('#send').on('click', function(){
+        socket.send($('#userInput').val());
+        $('#userInput').val(''); // input 창 초기화
     });
+    
 });

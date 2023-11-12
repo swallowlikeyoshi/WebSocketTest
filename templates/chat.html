@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
+    <title>WebSocket Test</title>
     <meta charset="UTF-8">
-    <title>Chat Room</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script src="/static/js/scripts.js"></script>
 </head>
 
 <body>
-    <ul id="messages"></ul> 
-    <input type="text" id="myMessage"> 
-    <button id="sendbutton">Send</button>
+    <ul id="messages"></ul>
+    <input type="text" id="userInput">
+    <button id="send">보내기</button>
 </body>
 
 </html>
