@@ -10,10 +10,14 @@ def create_app(is_debug = False):
 
     socket_io.init_app(app)
 
-    from app.events import Chat
-    socket_io.on_namespace(Chat('/chat'))
+    from app.chatting_events import Chat
+    socket_io.on_namespace(Chat('/chatting'))
 
-    from app.routes import main
-    app.register_blueprint(main)
+    # 채팅 HTTP 응답 가져오기
+    from app.chatting_routes import chatting
+    app.register_blueprint(chatting)
+
+    # 오늘의 운양고 HTTP 가져오기
+    
 
     return app
