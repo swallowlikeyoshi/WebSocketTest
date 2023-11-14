@@ -10,10 +10,10 @@ def create_app(is_debug = False):
 
     socket_io.init_app(app)
 
-    from app.events import Chat
-    socket_io.on_namespace(Chat('/chat'))
+    from app.chatting_events import Chat
+    socket_io.on_namespace(Chat('/chatting'))
 
-    from app.routes import main
-    app.register_blueprint(main)
+    from app.chatting_routes import chatting
+    app.register_blueprint(chatting)
 
     return app

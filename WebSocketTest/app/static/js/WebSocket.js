@@ -1,7 +1,7 @@
 var sc
 $(document).ready(function(){
 
-    sc = io.connect('http://' + document.domain + ':' + location.port + '/chat');
+    sc = io.connect('http://' + document.domain + ':' + location.port + '/chatting');
     
     sc.on('connect', function(){
         sc.emit('joined', {});

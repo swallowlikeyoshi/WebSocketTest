@@ -1,9 +1,9 @@
 from flask import session, redirect, url_for, render_template, request, Blueprint
 
-main = Blueprint('main', __name__)
+chatting = Blueprint('chatting', __name__, url_prefix='/chat')
 
-@main.route('/', methods = ['GET', 'POST'])
-def index():
+@chatting.route('/lobby', methods = ['GET', 'POST'])
+def chatting_lobby():
     if request.method == 'POST':
         session['name'] = request.form['name']
         session['room'] = 1
@@ -16,15 +16,15 @@ def index():
         # print(request.method)
         # print(request.remote_addr)
         # print('-----------------------------------')
-        return redirect(url_for('main.chat'))
-    return render_template('index.html')
+        return redirect(url_for('chatting.chatting_room'))
+    return render_template('chatting_lobby.html')
 
-@main.route('/chat')
-def chat():
+@chatting.route('/room')
+def chatting_room():
     user_name = session.get('name', '')
     room = session.get('room', '')
 
     if user_name == '' or room == '':
-        return redirect(url_for('.index'))
+        return redirect(url_for('.chatting_lobby'))
     
-    return render_template('chat.html', name = user_name, room = room)
+    return render_template('chatting_room.html', name = user_name, room = room)
