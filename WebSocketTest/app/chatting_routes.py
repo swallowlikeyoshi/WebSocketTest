@@ -16,6 +16,11 @@ def chatting_lobby():
         # print(request.method)
         # print(request.remote_addr)
         # print('-----------------------------------')
+
+        session['ip'] = request.remote_addr
+        session['User-Agent'] = request.headers.get('User-Agent')
+        session['cookie'] = request.cookies.get('user_cookie_name')
+
         return redirect(url_for('chatting.chatting_room'))
     return render_template('chatting_lobby.html')
 

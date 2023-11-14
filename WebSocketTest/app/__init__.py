@@ -13,7 +13,11 @@ def create_app(is_debug = False):
     from app.chatting_events import Chat
     socket_io.on_namespace(Chat('/chatting'))
 
+    # 채팅 HTTP 응답 가져오기
     from app.chatting_routes import chatting
     app.register_blueprint(chatting)
+
+    # 오늘의 운양고 HTTP 가져오기
+    
 
     return app
