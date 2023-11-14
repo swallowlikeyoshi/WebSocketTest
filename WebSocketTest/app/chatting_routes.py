@@ -1,26 +1,16 @@
 from flask import session, redirect, url_for, render_template, request, Blueprint
+from datetime import datetime
 
 chatting = Blueprint('chatting', __name__, url_prefix='/chat')
 
 @chatting.route('/lobby', methods = ['GET', 'POST'])
 def chatting_lobby():
     if request.method == 'POST':
+        # session =  ( 'name', 'room', 'datetime', 'headers' )
         session['name'] = request.form['name']
         session['room'] = 1
-        # session['user_ip'] = request.remote_addr
-        # print('-----------------------------------') # 유사시 사용 가능할 듯
-        # print(request.form['name'])
-        # print(request.headers.get('User-Agent'))
-        # print(request.cookies.get('user_cookie_name'))
-        # print(request.url)
-        # print(request.method)
-        # print(request.remote_addr)
-        # print('-----------------------------------')
-
-        session['ip'] = request.remote_addr
-        session['User-Agent'] = request.headers.get('User-Agent')
-        session['cookie'] = request.cookies.get('user_cookie_name')
-
+        session['datetime'] = datetime.now()
+        session['headers'] = str(request.headers)
         return redirect(url_for('chatting.chatting_room'))
     return render_template('chatting_lobby.html')
 
